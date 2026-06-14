@@ -1,0 +1,42 @@
+#include <stdio.h>
+#define N 5   // Queue size
+
+int QUEUE[N];
+int FRONT = -1, REAR = -1;
+
+void QINSERT(int ITEM) {
+
+    // Step 1: Check overflow
+    if ((FRONT == 0 && REAR == N - 1) || (FRONT == REAR + 1)) {
+        printf("OVERFLOW\n");
+        return;
+    }
+
+    // Step 2: Find new REAR
+    if (FRONT == -1) {   // Queue initially empty
+        FRONT = 0;
+        REAR = 0;
+    }
+    else if (REAR == N - 1) {
+        REAR = 0;   // circular move
+    }
+    else {
+        REAR = REAR + 1;
+    }
+
+    // Step 3: Insert element
+    QUEUE[REAR] = ITEM;
+
+    printf("Inserted: %d\n", ITEM);
+}
+
+int main() {
+    QINSERT(10);
+    QINSERT(20);
+    QINSERT(30);
+    QINSERT(40);
+    QINSERT(50);
+    QINSERT(60);  // This should show OVERFLOW
+
+    return 0;
+}
