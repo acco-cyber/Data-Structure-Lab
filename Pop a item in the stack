@@ -1,0 +1,43 @@
+#include <stdio.h>
+#define MAX 100
+
+int STACK[MAX];
+int TOP = 0;   // initially empty stack
+
+void POP() {
+    int ITEM;
+
+    if (TOP == 0) {
+        printf("UNDERFLOW\n");
+        return;
+    }
+
+    ITEM = STACK[TOP];
+    TOP = TOP - 1;
+
+    printf("Deleted item: %d\n", ITEM);
+}
+
+int main() {
+    // Pre-insert some elements for demo
+    STACK[1] = 10;
+    STACK[2] = 20;
+    STACK[3] = 30;
+    TOP = 3;
+
+    printf("Stack before pop:\n");
+    for (int i = 1; i <= TOP; i++) {
+        printf("%d ", STACK[i]);
+    }
+
+    printf("\n");
+
+    POP();
+
+    printf("Stack after pop:\n");
+    for (int i = 1; i <= TOP; i++) {
+        printf("%d ", STACK[i]);
+    }
+
+    return 0;
+}
