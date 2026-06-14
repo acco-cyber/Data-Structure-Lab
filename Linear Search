@@ -1,0 +1,34 @@
+#include <stdio.h>
+
+int main() {
+    int DATA[100], N, ITEM;
+    int K = 1, LOC = 0;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &N);
+
+    printf("Enter %d elements:\n", N);
+    for(int i = 1; i <= N; i++) {   // algorithm অনুযায়ী index 1 থেকে
+        scanf("%d", &DATA[i]);
+    }
+
+    printf("Enter ITEM to search: ");
+    scanf("%d", &ITEM);
+
+    // Step 2,3,4: Linear Search
+    while(LOC == 0 && K <= N) {
+        if(ITEM == DATA[K]) {
+            LOC = K;
+        }
+        K = K + 1;
+    }
+
+    // Step 5: Result
+    if(LOC == 0) {
+        printf("ITEM is not in the array DATA.\n");
+    } else {
+        printf("LOC is the location of ITEM: %d\n", LOC);
+    }
+
+    return 0;
+}
