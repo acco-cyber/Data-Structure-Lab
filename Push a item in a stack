@@ -1,0 +1,31 @@
+#include <stdio.h>
+#define MAX 100
+
+int STACK[MAX];
+int TOP = 0;     // initially empty stack
+
+void PUSH(int ITEM) {
+    if (TOP == MAX) {
+        printf("OVERFLOW\n");
+        return;
+    }
+
+    TOP = TOP + 1;
+    STACK[TOP] = ITEM;
+}
+
+int main() {
+    int ITEM;
+
+    printf("Enter item to push: ");
+    scanf("%d", &ITEM);
+
+    PUSH(ITEM);
+
+    printf("Stack after push:\n");
+    for (int i = 1; i <= TOP; i++) {
+        printf("%d ", STACK[i]);
+    }
+
+    return 0;
+}
