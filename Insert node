@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Define node structure
+struct node {
+    int data;
+    struct node *link;
+};
+
+struct node *START = NULL;
+
+// Function to insert at beginning
+void insert_begin(int ITEM) {
+    struct node *NEW;
+
+    // Step 1: Allocate memory
+    NEW = (struct node*)malloc(sizeof(struct node));
+
+    // Step 2: Check overflow
+    if (NEW == NULL) {
+        printf("OVERFLOW\n");
+        return;
+    }
+
+    // Step 3: Set INFO[NEW] = ITEM
+    NEW->data = ITEM;
+
+    // Step 4: LINK[NEW] = START
+    NEW->link = START;
+
+    // Step 5: START = NEW
+    START = NEW;
+}
+
+// Function to display list
+void display() {
+    struct node *temp = START;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->link;
+    }
+    printf("NULL\n");
+}
+
+// Main function
+int main() {
+    insert_begin(10);
+    insert_begin(20);
+    insert_begin(30);
+
+    printf("Linked List:\n");
+    display();
+
+    return 0;
+}
