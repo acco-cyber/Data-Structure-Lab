@@ -1,0 +1,72 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure
+struct node {
+    int data;
+    struct node* next;
+};
+
+// Function to delete a node
+struct node* deleteNode(struct node* start, struct node* locp, struct node* loc) {
+
+    // Case 1: If deleting first node
+    if (locp == NULL) {
+        start = start->next;
+    }
+    else {
+        // Case 2: Delete middle or last node
+        locp->next = loc->next;
+    }
+
+    // Free the deleted node
+    free(loc);
+
+    return start;
+}
+
+// Function to print list
+void printList(struct node* start) {
+    struct node* temp = start;
+    while (temp != NULL) {
+        printf("%d -> ", temp->data);
+        temp = temp->next;
+    }
+    printf("NULL\n");
+}
+
+// Main function
+int main() {
+    struct node *start = NULL, *n1, *n2, *n3;
+
+    // Creating nodes manually
+    n1 = (struct node*)malloc(sizeof(struct node));
+    n2 = (struct node*)malloc(sizeof(struct node));
+    n3 = (struct node*)malloc(sizeof(struct node));
+
+    // Assigning values
+    n1->data = 10;
+    n2->data = 20;
+    n3->data = 30;
+
+    // Linking nodes
+    n1->next = n2;
+    n2->next = n3;
+    n3->next = NULL;
+
+    start = n1;
+
+    printf("Before Deletion:\n");
+    printList(start);
+
+    // Suppose we want to delete node with value 20
+    struct node* loc = n2;   // Node to delete
+    struct node* locp = n1;  // Previous node
+
+    start = deleteNode(start, locp, loc);
+
+    printf("After Deletion:\n");
+    printList(start);
+
+    return 0;
+}
