@@ -1,0 +1,49 @@
+#include <stdio.h>
+#define N 5   // Queue size
+
+int QUEUE[N];
+int FRONT = -1, REAR = -1;
+
+int QDELETE() {
+    int ITEM;
+
+    // Step 1: Check underflow
+    if (FRONT == -1) {
+        printf("UNDERFLOW\n");
+        return -1;
+    }
+
+    // Step 2: Get element
+    ITEM = QUEUE[FRONT];
+
+    // Step 3: Find new FRONT
+    if (FRONT == REAR) {  
+        // Only one element
+        FRONT = -1;
+        REAR = -1;
+    }
+    else if (FRONT == N - 1) {
+        FRONT = 0;   // circular move
+    }
+    else {
+        FRONT = FRONT + 1;
+    }
+
+    return ITEM;
+}
+
+int main() {
+    // Example (manually inserting values)
+    FRONT = 0;
+    REAR = 2;
+    QUEUE[0] = 10;
+    QUEUE[1] = 20;
+    QUEUE[2] = 30;
+
+    printf("Deleted: %d\n", QDELETE());
+    printf("Deleted: %d\n", QDELETE());
+    printf("Deleted: %d\n", QDELETE());
+    printf("Deleted: %d\n", QDELETE()); // UNDERFLOW
+
+    return 0;
+}
